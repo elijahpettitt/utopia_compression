@@ -65,17 +65,20 @@ std::string reverse_string::reverse_string_3(std::string str) {
     std::vector<char> *strReversedV = recurs_method_3(strV);
     auto reversedStrFinal = std::string(strReversedV->begin(), strReversedV->end());
 
+    delete strV;
     delete strReversedV;
     return reversedStrFinal;
 }
 
 // inner recursive function that either returns the vector of length 1 or reverses the order of each reversed
 // list returned by both recursive children
-// choosing not to use valarray because of it not being common
+// note: valarray
 std::vector<char>* reverse_string::recurs_method_3(std::vector<char> *str) {
 //    Base case: if length less than 2, return vector
     if (str->size() < 2) {
-        return str;
+//        create a new vector such that the vector parameter and return vector can be freed separately
+//        by the calling function
+        return new std::vector<char>(str->begin(), str->end());
     }
 //    else: recurse into each half of the list
 
@@ -93,13 +96,15 @@ std::vector<char>* reverse_string::recurs_method_3(std::vector<char> *str) {
 
 //    free memory
     delete firstHalf;
+    delete secondHalf;
+    delete firstReversed;
 
 //    return
     return secondReversed;
 }
 
 void reverse_string::demonstration3() {
-    std::string str = "Hello to the best engineers, Software engineers!";
+    std::string str = "Recursion plus memory management!";
 
     std::cout << this->reverse_string_3(str) << std::endl << std::endl;
 }
