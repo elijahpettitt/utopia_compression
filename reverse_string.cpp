@@ -6,6 +6,10 @@
 
 #include "reverse_string.h"
 
+/***********************************************************************************************************************
+ * Method 1
+ **********************************************************************************************************************/
+
 // Reverse a string by returning a pair of iterators that will iterate backwards though the string
 // a reference to a string is passed into the function and a pair of reverse iterators is returned
 // the first is the beginning of the reversed string, the second is the end of the reversed string
@@ -25,8 +29,12 @@ void reverse_string::demonstration1() {
 }
 
 
+/***********************************************************************************************************************
+ * Method 2
+ **********************************************************************************************************************/
+
 // Given any item that has a .begin() and .end() functions that return bidirectional iterators and
-// addition oporator overloaded, then the method will return a reversed object of the same type
+// addition operator overloaded, then the method will return a reversed object of the same type
 template<class T>
 T reverse_string::reverse_string_2(T itemToReverse) {
     T reversedItem = "";
@@ -44,6 +52,58 @@ void reverse_string::demonstration2() {
 
     std::cout << this->reverse_string_2(str) << std::endl << std::endl;
 }
+
+
+/***********************************************************************************************************************
+ * Method 3
+ **********************************************************************************************************************/
+
+// convert to a vector and then reverse the vector in a recursive tree
+std::string reverse_string::reverse_string_3(std::string str) {
+    auto *strV = new std::vector<char>(str.begin(), str.end());
+
+    std::vector<char> *strReversedV = recurs_method_3(strV);
+    auto reversedStrFinal = std::string(strReversedV->begin(), strReversedV->end());
+
+    delete strReversedV;
+    return reversedStrFinal;
+}
+
+// inner recursive function that either returns the vector of length 1 or reverses the order of each reversed
+// list returned by both recursive children
+// choosing not to use valarray because of it not being common
+std::vector<char>* reverse_string::recurs_method_3(std::vector<char> *str) {
+//    Base case: if length less than 2, return vector
+    if (str->size() < 2) {
+        return str;
+    }
+//    else: recurse into each half of the list
+
+//    split list
+    int divisionBoundary = str->size()/2;
+    auto *firstHalf = new std::vector<char>(str->begin(), str->begin()+divisionBoundary);
+    auto *secondHalf = new std::vector<char>(str->begin()+divisionBoundary, str->end());
+
+//    recurse
+    std::vector<char> *firstReversed = recurs_method_3(firstHalf);
+    std::vector<char> *secondReversed = recurs_method_3(secondHalf);
+
+//    combine halves in reverse order
+    secondReversed->insert(secondReversed->end(),firstReversed->begin(), firstReversed->end());
+
+//    free memory
+    delete firstHalf;
+
+//    return
+    return secondReversed;
+}
+
+void reverse_string::demonstration3() {
+    std::string str = "Hello to the best engineers, Software engineers!";
+
+    std::cout << this->reverse_string_3(str) << std::endl << std::endl;
+}
+
 
 
 
