@@ -13,6 +13,9 @@ class reverse_string {
         std::pair<std::string::reverse_iterator, std::string::reverse_iterator> reverse_string_1(std::string &str);
         void demonstration1();
 
+        template<class T>
+        T reverse_string_2(T itemToReverse);
+        void demonstration2();
 };
 
 

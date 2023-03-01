@@ -25,6 +25,26 @@ void reverse_string::demonstration1() {
 }
 
 
+// Given any item that has a .begin() and .end() functions that return bidirectional iterators and
+// addition oporator overloaded, then the method will return a reversed object of the same type
+template<class T>
+T reverse_string::reverse_string_2(T itemToReverse) {
+    T reversedItem = "";
+//    because the iterator begins at the non-valid sentinel at the end of the list, we have to decrement by one initially
+    for (typename T::iterator i = itemToReverse.end()-1; i != itemToReverse.begin(); --i) {
+        reversedItem += *i;
+    }
+//    because the iterator ends at the beginning we have to include the beginning spot
+    reversedItem += *itemToReverse.begin();
+    return reversedItem;
+}
+
+void reverse_string::demonstration2() {
+    std::string str = "Hello to the best engineers, Software engineers!";
+
+    std::cout << this->reverse_string_2(str) << std::endl << std::endl;
+}
+
 
 
 
