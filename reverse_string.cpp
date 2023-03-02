@@ -110,6 +110,27 @@ void reverse_string::demonstration3() {
 }
 
 
+/***********************************************************************************************************************
+ * Method 4
+ **********************************************************************************************************************/
 
 
+
+void reverse_string::reversible_string::reverse() {
+    int size = this->size();
+    char storageC;
+    for (int i = 0; i < size/2; ++i) {
+        storageC = this->at(i);
+    }
+}
+
+void reverse_string::demonstration4() {
+    std::string str = "Hello World!";
+
+//    create a reversible string and reverse it
+    auto reversibleString = reversible_string(str);
+    reversibleString.reverse();
+
+    std::cout << reversibleString << std::endl << std::endl;
+}
 
