@@ -142,14 +142,23 @@ void reverse_string::demonstration4() {
  * Method 4
  **********************************************************************************************************************/
 
-std::string reverse_string::reverse_string_5(std::string str) {
-    return std::string();
+// using the same string reverse in place
+void reverse_string::reverse_string_5(std::string *str) {
+    char c;
+    for (int i = 0; i < (*str).size()/2; ++i) {
+        c = (*str).at(i);
+        (*str)[i] = (*str)[str->size()-1 -i];
+        (*str)[str->size()-1 -i] = c;
+    }
+    return;
 }
 
 void reverse_string::demonstration5() {
-    std::string str = "Reverse in Place for large strings!";
+    std::string str = "Reverse in-place for large strings!";
 
-    std::cout << this->reverse_string_5(str) << std::endl << std::endl;
+    this->reverse_string_5(&str);
+
+    std::cout << str << std::endl << std::endl;
 }
 
 

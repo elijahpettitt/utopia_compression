@@ -36,7 +36,7 @@ public:
     void demonstration4();
 
 //    in-place
-    std::string reverse_string_5(std::string str);
+    void reverse_string_5(std::string *str);
     void demonstration5();
 
 private:

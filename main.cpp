@@ -27,6 +27,6 @@ int main() {
     reverseString.demonstration5();
 
 
-    std::cout << "\n\nDemonstrations Complete!" << std::endl;
+    std::cout << "Demonstrations Complete!" << std::endl;
     return 0;
 }
