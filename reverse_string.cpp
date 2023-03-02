@@ -114,14 +114,17 @@ void reverse_string::demonstration3() {
  * Method 4
  **********************************************************************************************************************/
 
-
-
+//create a new string and reverse the order in the new string and put content back in the reversible_string type
 void reverse_string::reversible_string::reverse() {
-    int size = this->size();
+    std::string str = *this;
+    int size = str.size();
     char storageC;
     for (int i = 0; i < size/2; ++i) {
-        storageC = this->at(i);
+        storageC = str.at(i);
+        str[i] = str[size-1 -i];
+        str[size-1 -i] = storageC;
     }
+    this->swap(str);
 }
 
 void reverse_string::demonstration4() {
@@ -133,4 +136,5 @@ void reverse_string::demonstration4() {
 
     std::cout << reversibleString << std::endl << std::endl;
 }
+
 
