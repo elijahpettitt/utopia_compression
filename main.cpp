@@ -23,6 +23,9 @@ int main() {
     std::cout << "Reverse a string method 4!" << std::endl;
     reverseString.demonstration4();
 
+    std::cout << "Reverse a string method 5!" << std::endl;
+    reverseString.demonstration5();
+
 
     std::cout << "\n\nDemonstrations Complete!" << std::endl;
     return 0;
